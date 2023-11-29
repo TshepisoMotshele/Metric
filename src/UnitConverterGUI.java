@@ -12,13 +12,14 @@ public class UnitConverterGUI {
     private JLabel resultLabel;
 
     public UnitConverterGUI() {
-        frame = new JFrame("Unit Converter");
+        frame = new JFrame("VP Metric Converter");
         frame.setSize(600, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
         JPanel contentPanel = new JPanel(new BorderLayout());
-        contentPanel.setBorder(BorderFactory.createLineBorder(new Color(218, 185, 160), 10)); // Beige border color
+        contentPanel.setBorder(BorderFactory.createLineBorder(new Color(218, 185, 160), 10));
+        contentPanel.setBackground(new Color(125, 167, 180));
 
         initComponents();
         addComponentsToPanel(contentPanel);
@@ -31,7 +32,7 @@ public class UnitConverterGUI {
     }
 
     private void addImageToPanel(JPanel panel) {
-        ImageIcon imageIcon = new ImageIcon("VP_Logo.jpg"); // Replace with your image path
+        ImageIcon imageIcon = new ImageIcon("VP.png");
         JLabel imageLabel = new JLabel(imageIcon);
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
 
@@ -49,13 +50,25 @@ public class UnitConverterGUI {
         };
 
         conversionComboBox = new JComboBox<>(conversions);
-        quantityField = new JTextField(10);
+        conversionComboBox.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
+
+        quantityField = new JTextField(14);
+        quantityField.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
+        Dimension fieldDimension = new Dimension(200, 30);
+        quantityField.setPreferredSize(fieldDimension);
+
         convertButton = new JButton("Convert");
+        convertButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
+
+        Color beigeColor = new Color(241, 234, 229);
         resultLabel = new JLabel("Result will be shown here");
+        resultLabel.setForeground(beigeColor);
+        resultLabel.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
     }
 
     private void addComponentsToPanel(JPanel panel) {
         JPanel mainPanel = new JPanel(new GridBagLayout());
+        mainPanel.setBackground(new Color(125, 167, 180));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.anchor = GridBagConstraints.WEST;
@@ -72,9 +85,9 @@ public class UnitConverterGUI {
         gbc.gridy++;
         mainPanel.add(quantityField, gbc);
 
-        gbc.gridx = 0;
+        gbc.gridx = 1;
         gbc.gridy++;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         mainPanel.add(convertButton, gbc);
 
@@ -137,27 +150,27 @@ public class UnitConverterGUI {
 
     // Conversion methods
     private double feetToMeters(double feet) {
-        return feet * 0.3048; // 1 foot = 0.3048 meters
+        return feet * 0.3048;
     }
 
     private double metersToFeet(double meters) {
-        return meters / 0.3048; // 1 meter = 3.28084 feet
+        return meters / 0.3048;
     }
 
     private double poundsToKilograms(double pounds) {
-        return pounds * 0.453592; // 1 pound = 0.453592 kilograms
+        return pounds * 0.453592;
     }
 
     private double kilogramsToPounds(double kilograms) {
-        return kilograms / 0.453592; // 1 kilogram = 2.20462 pounds
+        return kilograms / 0.453592;
     }
 
     private double fahrenheitToCelsius(double fahrenheit) {
-        return (fahrenheit - 32) * 5 / 9; // Conversion formula
+        return (fahrenheit - 32) * 5 / 9;
     }
 
     private double celsiusToFahrenheit(double celsius) {
-        return (celsius * 9 / 5) + 32; // Conversion formula
+        return (celsius * 9 / 5) + 32;
     }
 
     public static void main(String[] args) {
